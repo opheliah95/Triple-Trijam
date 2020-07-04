@@ -10,9 +10,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10f;
     public float gravity = -20f;
     public float jumpSpeed = 5f;
+    public float rotateSpeed = 3.0f;
 
     [SerializeField]
     Vector2 move = Vector2.zero;
+    [SerializeField]
+    Vector2 rotate = Vector2.zero;
+
+    private Vector2 m_Rotation;
 
     [SerializeField]
     CharacterController controller;
@@ -67,10 +72,22 @@ public class PlayerController : MonoBehaviour
     {
         move = val.Get<Vector2>();
     }
+
     // jump function
     void OnJump(InputValue val)
     {
         canJump = val.isPressed && !canJump;
-    
+    }
+
+    // on player look
+    void OnLook(InputValue val)
+    {
+        rotate = val.Get<Vector2>();
+        if (rotate.sqrMagnitude < 0.01)
+            return;
+        var scaledRotateSpeed = rotateSpeed * Time.deltaTime;
+        m_Rotation.y += rotate.x * scaledRotateSpeed;
+        m_Rotation.x = Mathf.Clamp(m_Rotation.x - rotate.y * scaledRotateSpeed, -89, 89);
+        transform.localEulerAngles = m_Rotation;
     }
 }

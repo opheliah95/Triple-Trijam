@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Hold",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "d8b0a5ec-75b5-46f6-9df8-3af8e486dfc6",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -34,6 +34,14 @@
                     "type": "Value",
                     "id": "2315cab1-a816-457f-aabd-6d652ff1565d",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "8c523ca3-413e-44a6-a810-cabe9ef5f7ea",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -108,8 +116,8 @@
                 {
                     "name": "",
                     "id": "1511cddc-2eef-4463-bce2-5e6ece1b6f2a",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Hold",
@@ -119,11 +127,22 @@
                 {
                     "name": "",
                     "id": "312fd123-6481-498d-a994-aa4fd7ac6423",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Release",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72c6f14d-63c7-4881-bba0-27e437eae726",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
