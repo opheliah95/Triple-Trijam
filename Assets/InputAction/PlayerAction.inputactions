@@ -6,7 +6,7 @@
             "id": "c42903ed-39c4-49d9-906b-d66e6c7d89fd",
             "actions": [
                 {
-                    "name": "4DirWalk",
+                    "name": "Walk",
                     "type": "Value",
                     "id": "d705bd7b-e50c-4c40-984a-a9a43fc8d54d",
                     "expectedControlType": "Vector2",
@@ -46,7 +46,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "4DirWalk",
+                    "action": "Walk",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -57,7 +57,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "4DirWalk",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -68,7 +68,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "4DirWalk",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -79,7 +79,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "4DirWalk",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -90,7 +90,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "4DirWalk",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
