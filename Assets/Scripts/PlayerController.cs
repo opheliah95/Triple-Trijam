@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
     private void _PlayerMove()
     {
         float groundPos = Mathf.Abs(foot.position.y - groundPosition.position.y);
-        Debug.Log(controller.isGrounded);
         Vector3 velocity = controller.velocity;
 
         if (move.magnitude > 1)
