@@ -9,4 +9,11 @@ public class AudioManager : MonoBehaviour
         GetComponent<AudioSource>().clip = sound;
         GetComponent<AudioSource>().Play();
     }
+
+    public void PlaySound(SoundData soundData)
+    {
+        int index = Random.Range(0, soundData.sounds.Count);
+        AudioClip clip = soundData.sounds[index];
+        PlaySound(clip);
+    }
 }

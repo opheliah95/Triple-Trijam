@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Incinerator : MonoBehaviour
 {
-    float minWaitTime = 0.2f, maxWaitTime = 0.8f;
+    public AudioClip burningSound;
+    float minWaitTime = 1f, maxWaitTime = 3f;
     [SerializeField]
     float m_RandomValue;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("something there");
         if (other.gameObject.tag == "Book")
         {
             Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().PlaySound(burningSound);
             m_RandomValue = Random.Range(minWaitTime, maxWaitTime);
             StartCoroutine(TriggerRespawn());
         }

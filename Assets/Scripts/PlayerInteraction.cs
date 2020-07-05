@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     private Transform m_currentObject;
 
     private Camera m_Camera;
+    public SoundData pickUpSound;
 
     private void Start()
     {
@@ -90,9 +91,10 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnHold(InputValue val)
     {
-        if (m_currentObject != null)
+        if (m_currentObject != null && m_currentState != State.ObjectPickUp)
         {
             // Mount to our transform.
+            FindObjectOfType<AudioManager>().PlaySound(pickUpSound);
             m_currentObject.GetComponent<Rigidbody>().isKinematic = true;
             m_currentObject.position = default;
             m_currentObject.rotation = new Quaternion(0, 0, 0, 0);
