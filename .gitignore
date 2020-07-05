@@ -67,3 +67,11 @@ crashlytics-build.properties
 /[Aa]ssets/Test/
 /[Aa]ssets/Test.meta
 
+
+Assets/SpawnManager.cs
+
+Assets/SpawnManager.cs.meta
+
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+
+ProjectSettings/Packages/com.unity.probuilder/

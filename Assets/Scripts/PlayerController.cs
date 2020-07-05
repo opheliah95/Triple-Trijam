@@ -27,10 +27,13 @@ public class PlayerController : MonoBehaviour
     bool canJump;
 
     private Vector3 m_playerVelocity;
+    private Camera m_Camera;
+    float yVelocity;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        m_Camera = Camera.main;
         
     }
 
@@ -45,27 +48,33 @@ public class PlayerController : MonoBehaviour
     private void _PlayerMove()
     {
         float groundPos = Mathf.Abs(foot.position.y - groundPosition.position.y);
-        Vector3 velocity = controller.velocity;
 
-        if (move.magnitude > 1)
-            move.Normalize();
+        if (move.sqrMagnitude < 0.01)
+            return;
+        var scaledMoveSpeed = moveSpeed * Time.deltaTime;
 
-        velocity.x = move.x * moveSpeed;
-        velocity.z = move.y * moveSpeed;
-
+        // part of velocity will be determined by jump
         // if the character is in the air, it will fall
         if (!controller.isGrounded)
-            velocity.y += gravity * Time.deltaTime;
+            yVelocity += gravity * Time.deltaTime;
 
         // jump
         if (canJump && groundPos < 0.1f)
         {
             canJump = false;
-            velocity.y = jumpSpeed;
+            yVelocity = jumpSpeed * Time.deltaTime;
         }
 
-        // move
-        controller.Move(velocity * Time.deltaTime);
+        Debug.Log(transform.eulerAngles.y);
+
+        // For simplicity's sake, we just keep movement in a single plane here. Rotate
+        // direction according to world Y rotation of player.
+        var moveDir = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(move.x, 0, move.y);
+
+
+        // move player
+        controller.Move(moveDir * scaledMoveSpeed);
+        controller.Move(transform.up* yVelocity);
 
     }
 
@@ -92,6 +101,8 @@ public class PlayerController : MonoBehaviour
         var scaledRotateSpeed = rotateSpeed * Time.deltaTime;
         m_Rotation.y += rotate.x * scaledRotateSpeed;
         m_Rotation.x = Mathf.Clamp(m_Rotation.x - rotate.y * scaledRotateSpeed, -89, 89);
-        transform.localEulerAngles = m_Rotation;
+        //m_Camera.transform.localEulerAngles = m_Rotation;
+        // update player's rotation
+        transform.localEulerAngles = new Vector3(m_Rotation.x, m_Rotation.y, 0);
     }
 }

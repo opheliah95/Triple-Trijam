@@ -17,6 +17,12 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private Transform m_currentObject;
 
+    private Camera m_Camera;
+
+    private void Start()
+    {
+        m_Camera = Camera.main;
+    }
     private enum State
     {
         Wandering,
@@ -39,8 +45,8 @@ public class PlayerInteraction : MonoBehaviour
                 // racast to check if there is stuff in sight
                 RaycastHit hitInfo;
                 // for debuging purpose...
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rayCastDistance, Color.green);
-                if (Physics.Raycast(transform.position, transform.forward, out hitInfo, rayCastDistance)
+                Debug.DrawRay(m_Camera.transform.position, m_Camera.transform.TransformDirection(Vector3.forward) * rayCastDistance, Color.green);
+                if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hitInfo, rayCastDistance)
                     && !hitInfo.collider.gameObject.isStatic)
                 {
                     // check the state player is in
