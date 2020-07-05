@@ -263,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 01331385999ef214caae11b0e49883da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -352,9 +352,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0031250003
     y: 0
-    width: 1
+    width: 0.99375004
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -372,7 +372,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -602,11 +602,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d94b247b3c0824782550cd9b28e18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastDistance: 15
-  rayCastPoint: {fileID: 963194228}
+  rayCastDistance: 10
+  rayCastPoint: {fileID: 0}
   mousePos: {x: 0, y: 0, z: 0}
+  holdDistance: 10
   m_currentState: 0
-  m_currentObjectTransform: {fileID: 0}
+  m_currentObject: {fileID: 0}
 --- !u!1 &2143715894
 GameObject:
   m_ObjectHideFlags: 0

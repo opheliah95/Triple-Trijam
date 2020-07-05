@@ -7,14 +7,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float rayCastDistance;
+    public float rayCastDistance = 10f;
     public Transform rayCastPoint;
     public Vector3 mousePos;
+    public float holdDistance;
+    public float force = 5f;
 
     [SerializeField]
     private State m_currentState;
     [SerializeField]
-    private Transform m_currentObjectTransform;
+    private Transform m_currentObject;
 
     private enum State
     {
@@ -46,18 +48,22 @@ public class PlayerInteraction : MonoBehaviour
                     if (m_currentState != State.ObjectInSight)
                     {
                         ChangeState(State.ObjectInSight);
-                        m_currentObjectTransform = hitInfo.collider.transform;
+                        m_currentObject = hitInfo.collider.transform;
                     }
+                } else if (m_currentState != State.Wandering)
+                {
+                    // change state to wandering
+                    // does not hold any current objects
+                    ChangeState(State.Wandering);
+                    m_currentObject = null;
+                
                 }
                 break;
             case State.ObjectPickUp:
                 break;
 
-
-
         }
-            
-        
+              
     }
 
 
@@ -79,8 +85,27 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnHold(InputValue val)
     {
-            
+        if (m_currentObject != null)
+        {
+            // Mount to our transform.
+            m_currentObject.GetComponent<Rigidbody>().isKinematic = true;
+            m_currentObject.position = default;
+            m_currentObject.SetParent(transform, worldPositionStays: false);
+            m_currentObject.localPosition += new Vector3(0, 0, holdDistance);
+            ChangeState(State.ObjectPickUp);
+        }
 
+    }
+
+    public void OnRelease(InputValue val)
+    {
+        // throw the object away
+        m_currentObject.parent = null; // unparenting
+        m_currentObject.GetComponent<Rigidbody>().isKinematic = false;
+        // add an impulse force to rigidbody
+        m_currentObject.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
+       ChangeState(State.Wandering);
+    
     }
 
 }
