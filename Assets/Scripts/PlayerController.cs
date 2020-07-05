@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//TODO: function to get player moving in direction move vector points to
-// TODO: function to make player jump
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
@@ -55,13 +53,12 @@ public class PlayerController : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
 
         // check if can jump
-        if (controller.isGrounded && canJump)
+        if (canJump)
         {
             velocity.y = jumpSpeed;
             canJump = false;
         }
             
-
         // apply velocity to the character
         controller.Move(velocity * Time.deltaTime);
     }
@@ -73,10 +70,11 @@ public class PlayerController : MonoBehaviour
         move = val.Get<Vector2>();
     }
 
-    // jump function
+    // jump function ---it is buggy right now
     void OnJump(InputValue val)
     {
-        canJump = val.isPressed && !canJump;
+        canJump = (controller.isGrounded);
+           
     }
 
     // on player look

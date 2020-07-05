@@ -150,7 +150,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.12
+  m_Intensity: 0.14
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 924482901}
   - component: {fileID: 924482900}
   - component: {fileID: 924482899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.516, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1760600718}
@@ -422,7 +422,6 @@ GameObject:
   - component: {fileID: 1760600717}
   - component: {fileID: 1760600716}
   - component: {fileID: 1760600715}
-  - component: {fileID: 1760600714}
   - component: {fileID: 1760600713}
   - component: {fileID: 1760600719}
   - component: {fileID: 1760600720}
@@ -450,20 +449,6 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &1760600714
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760600712}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1760600715
 MonoBehaviour:
@@ -599,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   gravity: -20
-  jumpSpeed: 5
+  jumpSpeed: 10
   rotateSpeed: 10
   move: {x: 0, y: 0}
   rotate: {x: 0, y: 0}
@@ -617,8 +602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d94b247b3c0824782550cd9b28e18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastDistance: 0
+  rayCastDistance: 15
+  rayCastPoint: {fileID: 963194228}
   mousePos: {x: 0, y: 0, z: 0}
+  m_currentState: 0
+  m_currentObjectTransform: {fileID: 0}
 --- !u!1 &2143715894
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +624,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &2143715895
 MeshCollider:
