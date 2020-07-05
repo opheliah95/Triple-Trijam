@@ -90,6 +90,7 @@ public class PlayerInteraction : MonoBehaviour
             // Mount to our transform.
             m_currentObject.GetComponent<Rigidbody>().isKinematic = true;
             m_currentObject.position = default;
+            m_currentObject.rotation = new Quaternion(0, 0, 0, 0);
             m_currentObject.SetParent(transform, worldPositionStays: false);
             m_currentObject.localPosition += new Vector3(0, 0, holdDistance);
             ChangeState(State.ObjectPickUp);

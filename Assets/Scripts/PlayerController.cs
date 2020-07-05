@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
-    public float gravity = -20f;
+    public float gravity = -9.81f;
     public float jumpSpeed = 5f;
     public float rotateSpeed = 3.0f;
 
@@ -21,8 +21,12 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
 
     [SerializeField]
+    Transform groundPosition, foot;
+
+    [SerializeField]
     bool canJump;
 
+    private Vector3 m_playerVelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,36 +35,39 @@ public class PlayerController : MonoBehaviour
     }
 
     // hard code player movement
-    void FixedUpdate()
+    
+    private void FixedUpdate()
     {
         _PlayerMove();
+
     }
 
     private void _PlayerMove()
     {
+        float groundPos = Mathf.Abs(foot.position.y - groundPosition.position.y);
+        Debug.Log(controller.isGrounded);
         Vector3 velocity = controller.velocity;
 
-        // normalize the vector
         if (move.magnitude > 1)
             move.Normalize();
 
-        // update movement in x and z direction
         velocity.x = move.x * moveSpeed;
         velocity.z = move.y * moveSpeed;
 
-        // enable gravity
-        if (!controller.isGrounded && !canJump)
+        // if the character is in the air, it will fall
+        if (!controller.isGrounded)
             velocity.y += gravity * Time.deltaTime;
 
-        // check if can jump
-        if (canJump)
+        // jump
+        if (canJump && groundPos < 0.1f)
         {
-            velocity.y = jumpSpeed;
             canJump = false;
+            velocity.y = jumpSpeed;
         }
-            
-        // apply velocity to the character
+
+        // move
         controller.Move(velocity * Time.deltaTime);
+
     }
 
     // I know unity event is preferred but I will stick with send messages for this jam
@@ -73,8 +80,8 @@ public class PlayerController : MonoBehaviour
     // jump function ---it is buggy right now
     void OnJump(InputValue val)
     {
-        canJump = (controller.isGrounded);
-           
+        canJump = true;
+
     }
 
     // on player look
