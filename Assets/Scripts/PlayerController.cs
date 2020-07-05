@@ -65,8 +65,6 @@ public class PlayerController : MonoBehaviour
             yVelocity = jumpSpeed * Time.deltaTime;
         }
 
-        Debug.Log(transform.eulerAngles.y);
-
         // For simplicity's sake, we just keep movement in a single plane here. Rotate
         // direction according to world Y rotation of player.
         var moveDir = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(move.x, 0, move.y);

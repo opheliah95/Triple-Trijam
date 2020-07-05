@@ -97,7 +97,7 @@ public class PlayerInteraction : MonoBehaviour
             m_currentObject.position = default;
             m_currentObject.rotation = new Quaternion(0, 0, 0, 0);
             m_currentObject.SetParent(transform, worldPositionStays: false);
-            m_currentObject.localPosition += new Vector3(0, 0, holdDistance);
+            m_currentObject.localPosition = new Vector3(0, 0, holdDistance);
             ChangeState(State.ObjectPickUp);
         }
 
@@ -106,6 +106,8 @@ public class PlayerInteraction : MonoBehaviour
     public void OnRelease(InputValue val)
     {
         // throw the object away
+        if (m_currentObject == null)
+            return;
         m_currentObject.parent = null; // unparenting
         m_currentObject.GetComponent<Rigidbody>().isKinematic = false;
         // add an impulse force to rigidbody
@@ -113,5 +115,7 @@ public class PlayerInteraction : MonoBehaviour
        ChangeState(State.Wandering);
     
     }
+
+    
 
 }
