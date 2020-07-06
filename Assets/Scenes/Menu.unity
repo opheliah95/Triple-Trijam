@@ -1164,7 +1164,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1389786446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1652761759}
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1389786446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,6 +1459,7 @@ GameObject:
   - component: {fileID: 1652761756}
   - component: {fileID: 1652761758}
   - component: {fileID: 1652761757}
+  - component: {fileID: 1652761759}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1511,6 +1523,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652761755}
   m_CullTransparentMesh: 0
+--- !u!114 &1652761759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652761755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88bc774ba1c91547b7a780f6836b7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660157710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7469484624682501897, guid: 20f7c87fd79a9b1449f43c46b47c7562,
@@ -2147,7 +2171,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841115170}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1652761759}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1841115170
 MonoBehaviour:
   m_ObjectHideFlags: 0

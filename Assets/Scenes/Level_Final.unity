@@ -564,6 +564,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 382016260}
     m_Modifications:
+    - target: {fileID: -8218733594787362655, guid: 742db02b1518126428033c13943b665c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -4858757273007696343, guid: 742db02b1518126428033c13943b665c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 742db02b1518126428033c13943b665c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -629,10 +639,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 03df648f2a2e48843962ec5471b9e969, type: 2}
+    - target: {fileID: -2099035415400765045, guid: 742db02b1518126428033c13943b665c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 742db02b1518126428033c13943b665c,
         type: 3}
       propertyPath: m_Name
       value: bed
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 742db02b1518126428033c13943b665c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3612083593391456173, guid: 742db02b1518126428033c13943b665c,
         type: 3}
@@ -1516,6 +1536,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: table
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 20f7c87fd79a9b1449f43c46b47c7562,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -113181020801827196, guid: 20f7c87fd79a9b1449f43c46b47c7562,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1535,6 +1560,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.781
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502203975881118265, guid: 20f7c87fd79a9b1449f43c46b47c7562,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695666576454475813, guid: 20f7c87fd79a9b1449f43c46b47c7562,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469484624682501897, guid: 20f7c87fd79a9b1449f43c46b47c7562,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8833720299871980622, guid: 20f7c87fd79a9b1449f43c46b47c7562,
         type: 3}
@@ -1864,8 +1904,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4035823204035484049, guid: 5e3efb6e4be7f81498dfe965a13e71ea,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 19ec327584e781048bef90f5e4bc65c2, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_PlayOnAwake: 1
+  m_Volume: 0.668
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1978,7 +2018,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!108 &1801864823
 Light:

@@ -13,6 +13,7 @@ public class Incinerator : MonoBehaviour
         if (other.gameObject.tag == "Book")
         {
             Destroy(other.gameObject);
+            FindObjectOfType<PlayerInteraction>().ResetStateToDefault(); // set object state to default
             FindObjectOfType<AudioManager>().PlaySound(burningSound);
             m_RandomValue = Random.Range(minWaitTime, maxWaitTime);
             StartCoroutine(TriggerRespawn());

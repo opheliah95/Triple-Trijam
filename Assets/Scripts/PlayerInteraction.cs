@@ -118,6 +118,11 @@ public class PlayerInteraction : MonoBehaviour
     
     }
 
+    public void ResetStateToDefault()
+    {
+        m_currentState = State.Wandering;
+    }
+
     
 
 }
