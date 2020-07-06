@@ -25,10 +25,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     bool canJump;
-
+    bool _onClap;
     private Vector3 m_playerVelocity;
     private Camera m_Camera;
     float yVelocity;
+    public AudioClip playerClap;
     // Start is called before the first frame update
     void Start()
     {
@@ -102,5 +103,15 @@ public class PlayerController : MonoBehaviour
         //m_Camera.transform.localEulerAngles = m_Rotation;
         // update player's rotation
         transform.localEulerAngles = new Vector3(m_Rotation.x, m_Rotation.y, 0);
+    }
+
+    // clapping function
+    void OnClap()
+    {
+        _onClap = !_onClap;
+        if (_onClap)
+            FindObjectOfType<AudioManager>().PlaySound(playerClap);
+        else
+            FindObjectOfType<AudioManager>().StopSound();
     }
 }

@@ -1111,6 +1111,7 @@ MonoBehaviour:
   groundPosition: {fileID: 2143715898}
   foot: {fileID: 527128746}
   canJump: 0
+  playerClap: {fileID: 8300000, guid: 9314a2847eae7734081d3e531877bf61, type: 3}
 --- !u!114 &1760600720
 MonoBehaviour:
   m_ObjectHideFlags: 0
