@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public void PlaySound(AudioClip sound)
     {
+        GetComponent<AudioSource>().Stop();
         GetComponent<AudioSource>().clip = sound;
         GetComponent<AudioSource>().Play();
     }
@@ -15,5 +16,10 @@ public class AudioManager : MonoBehaviour
         int index = Random.Range(0, soundData.sounds.Count);
         AudioClip clip = soundData.sounds[index];
         PlaySound(clip);
+    }
+
+    public void StopSound()
+    {
+        GetComponent<AudioSource>().Stop();
     }
 }
