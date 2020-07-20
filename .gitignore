@@ -61,3 +61,17 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# all test files
+/[Aa]ssets/Scenes/Test/
+/[Aa]ssets/Scenes/Test.meta
+/[Aa]ssets/Test/
+/[Aa]ssets/Test.meta
+
+
+Assets/SpawnManager.cs
+
+Assets/SpawnManager.cs.meta
+
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+
+ProjectSettings/Packages/com.unity.probuilder/
