@@ -1,4 +1,4 @@
-name: CI
+name: Triple Trijam
 on: [push]
 jobs:
   build:
