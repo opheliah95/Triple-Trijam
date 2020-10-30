@@ -646,6 +646,9 @@
     <Reference Include="Unity.ProBuilder">
       <HintPath>D:/Unity_Works/Trijam/Triple Trijam/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>D:/Unity_Works/Trijam/Triple Trijam/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ProBuilder.Editor">
       <HintPath>D:/Unity_Works/Trijam/Triple Trijam/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
     </Reference>
@@ -690,9 +693,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.InputSystem.csproj">
-      <Project>{B981C228-3EA7-A8B2-A665-DDADA0066000}</Project>
-      <Name>Unity.InputSystem</Name>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{0AE7C59D-3E59-468E-C16D-A0F0EBE0A239}</Project>
+      <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="Movement.csproj">
+      <Project>{B260B250-3075-E2D4-3BC9-612F024135DE}</Project>
+      <Name>Movement</Name>
+    </ProjectReference>
+    <ProjectReference Include="Sound.csproj">
+      <Project>{CED8E4D9-5525-5DF8-045A-380C2C4B8F36}</Project>
+      <Name>Sound</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
