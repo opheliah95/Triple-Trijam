@@ -6043,8 +6043,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bookPrefabs:
-  - {fileID: 4799169843951427696, guid: 1a1e5570e82ec054d843d5c1582dfdaf, type: 3}
-  - {fileID: 4799169843951427696, guid: 1a1e5570e82ec054d843d5c1582dfdaf, type: 3}
+  - {fileID: 4860998938844095435, guid: 433c5e19d7041c24bbaafd008d10f0eb, type: 3}
+  - {fileID: 1718892852675040702, guid: 797aa70c922aa9b4a8fba8e280f25625, type: 3}
   bookSpawn: {fileID: 8300000, guid: e2c7ad79e4c6c4a42b4c929d92290398, type: 3}
 --- !u!1 &1346506829
 GameObject:
