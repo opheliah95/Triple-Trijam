@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InputAction\PlayerAction.cs" />
     <Compile Include="Assets\Scripts\Incinerator.cs" />
+    <Compile Include="Assets\Scripts\Material\ReplaceMaterial.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
     <Reference Include="UnityEngine">
