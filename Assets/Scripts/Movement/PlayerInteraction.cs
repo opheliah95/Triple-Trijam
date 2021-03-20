@@ -17,12 +17,12 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private Transform m_currentObject;
 
-    private Camera m_Camera;
+    public Camera m_Camera;
     public SoundData pickUpSound;
 
     private void Start()
     {
-        m_Camera = Camera.main;
+        //m_Camera = Camera.main;
     }
     private enum State
     {
