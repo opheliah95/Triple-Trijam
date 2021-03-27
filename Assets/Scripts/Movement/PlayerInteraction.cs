@@ -20,6 +20,8 @@ public class PlayerInteraction : MonoBehaviour
     public Camera m_Camera;
     public SoundData pickUpSound;
 
+    public LayerMask layersToHit;
+
     private void Start()
     {
         //m_Camera = Camera.main;
@@ -47,21 +49,24 @@ public class PlayerInteraction : MonoBehaviour
                 RaycastHit hitInfo;
                 // for debuging purpose...
                 Debug.DrawRay(m_Camera.transform.position, m_Camera.transform.TransformDirection(Vector3.forward) * rayCastDistance, Color.green);
-                if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hitInfo, rayCastDistance)
+                if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hitInfo, rayCastDistance, layersToHit)
                     && !hitInfo.collider.gameObject.isStatic)
                 {
+                    Debug.LogFormat("We've hitted {0}", hitInfo.collider.transform);
                     // check the state player is in
                     if (m_currentState != State.ObjectInSight)
                     {
                         ChangeState(State.ObjectInSight);
                         m_currentObject = hitInfo.collider.transform;
+                       
                     }
                 } else if (m_currentState != State.Wandering)
                 {
                     // change state to wandering
                     // does not hold any current objects
                     ChangeState(State.Wandering);
-                    m_currentObject = null;
+                    // only do so if there is no registered current object
+                    //m_currentObject = null;
                 
                 }
                 break;
@@ -91,8 +96,11 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnHold(InputValue val)
     {
+        Debug.LogFormat("The input value is null? {0}", val == null);
+
         if (m_currentObject != null && m_currentState != State.ObjectPickUp)
         {
+            Debug.LogFormat("The current object on hold is {0}", m_currentObject);
             // Mount to our transform.
             FindObjectOfType<AudioManager>().PlaySound(pickUpSound);
             m_currentObject.GetComponent<Rigidbody>().isKinematic = true;

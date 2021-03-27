@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2574523676082376610}
   - component: {fileID: 6004738256930133391}
   - component: {fileID: 6268740464022769861}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2912450777191010720}
   - component: {fileID: 8812270240592088722}
   - component: {fileID: 6857967583083523958}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Book_Var2
   m_TagString: Book
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 4654154379563786735}
   - component: {fileID: 3771710633849337519}
   - component: {fileID: 2522910310616440250}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BInder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
