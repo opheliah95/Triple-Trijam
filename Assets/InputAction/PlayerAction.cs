@@ -179,6 +179,33 @@ public class @PlayerAction : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""General"",
+            ""id"": ""0d0170c6-ae21-4f09-be38-1029d5deb1af"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7dbf3a8-57ef-445d-9988-75867f227377"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7eda6c39-7633-4a17-bbb8-174ebd853758"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -208,6 +235,9 @@ public class @PlayerAction : IInputActionCollection, IDisposable
         m_Movements_Release = m_Movements.FindAction("Release", throwIfNotFound: true);
         m_Movements_Look = m_Movements.FindAction("Look", throwIfNotFound: true);
         m_Movements_Clap = m_Movements.FindAction("Clap", throwIfNotFound: true);
+        // General
+        m_General = asset.FindActionMap("General", throwIfNotFound: true);
+        m_General_Exit = m_General.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +356,39 @@ public class @PlayerAction : IInputActionCollection, IDisposable
         }
     }
     public MovementsActions @Movements => new MovementsActions(this);
+
+    // General
+    private readonly InputActionMap m_General;
+    private IGeneralActions m_GeneralActionsCallbackInterface;
+    private readonly InputAction m_General_Exit;
+    public struct GeneralActions
+    {
+        private @PlayerAction m_Wrapper;
+        public GeneralActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Exit => m_Wrapper.m_General_Exit;
+        public InputActionMap Get() { return m_Wrapper.m_General; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralActions set) { return set.Get(); }
+        public void SetCallbacks(IGeneralActions instance)
+        {
+            if (m_Wrapper.m_GeneralActionsCallbackInterface != null)
+            {
+                @Exit.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnExit;
+            }
+            m_Wrapper.m_GeneralActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
+            }
+        }
+    }
+    public GeneralActions @General => new GeneralActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -343,5 +406,9 @@ public class @PlayerAction : IInputActionCollection, IDisposable
         void OnRelease(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnClap(InputAction.CallbackContext context);
+    }
+    public interface IGeneralActions
+    {
+        void OnExit(InputAction.CallbackContext context);
     }
 }
