@@ -1,34 +1,71 @@
 name: Triple Trijam
-on: [push]
+# when the build event will happen
+on:
+    # triggers the build only on push to main branch or release
+    push:
+        branches:
+            - master
+
+    release:
+        types: [published, created, edited]
+
+# a list of jobs to be done
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
-    container: gableroux/unity3d:2019.4.1f1
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - .
+        unityVersion:
+          - 2019.4.1f1
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          - WebGL # WebGL.
+
     steps:
-        - name: Checkout Project
-          uses: actions/checkout@v1
+    # checkout the latest commit
+    - name: Checkout Latest commit on master branch
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        lfs: true
 
-        - name: Decrypt the license file
-          run: openssl aes-256-cbc -d -in .github/Unity.ulf.enc -k ${{ secrets.UNITY_DECRYPT }} >> .github/Unity_v2019.x.ulf
+    # cache all library files
+    - name: Cache Unity Library files
+      uses: actions/cache@v2
+      with:
+        path: ${{ matrix.projectPath }}/Library
+        key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+        restore-keys: |
+          Library-${{ matrix.projectPath }}-
+          Library-
 
-        # Activate unity
-        - name: Activate Unity
-          run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile .github/Unity_v2019.x.ulf || exit 0
+    # Test
+    - name: Run tests
+      uses: game-ci/unity-test-runner@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-        # Build Windows and OSX
-        - name: Build Windows Player
-          run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildWindows64Player ./bin-win64/CISample.exe
-        - name: Build OSX Player
-          run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -noUpm -logFile -projectPath . -buildOSXUniversalPlayer ./bin-osx/CISample.app
 
-        - name: Archive Windows Build
-          uses: actions/upload-artifact@v1
-          with:
-            name: CISampleWin64Binary
-            path: ./bin-win64
+    # Build
+    - name: Build project
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      with:
+        unityVersion: ${{ matrix.unityVersion }}
+        targetPlatform: ${{ matrix.targetPlatform }}
+        allowDirtyBuild: true
 
-        - name: Archive Mac Build
-          uses: actions/upload-artifact@v1
-          with:
-            name: CISampleOSXBinary
-            path: ./bin-osx
+    # Output
+    - uses: actions/upload-artifact@v2
+      with:
+          name: Build
+          path: build
